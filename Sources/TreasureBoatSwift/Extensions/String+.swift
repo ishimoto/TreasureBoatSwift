@@ -12,6 +12,12 @@ extension String {
     /// Convert the url string presentation into a real URL
     /// - Returns: an URL.
     public func url() -> URL {
+        return URL(string: self)!
+    }
+    
+    /// Convert the url string presentation into a real URL
+    /// - Returns: an URL.
+    public func fileUrl() -> URL {
         return URL(fileURLWithPath: self)
     }
 
@@ -19,21 +25,21 @@ extension String {
     /// - Returns: The file name.
     /// - SeeAlso: ``fileExtension()``
     public func fileName() -> String {
-        return self.url().deletingPathExtension().lastPathComponent
+        return self.fileUrl().deletingPathExtension().lastPathComponent
     }
     
     /// Get the file extension from a String.
     /// - Returns: The file extension.
     /// - SeeAlso: ``fileName()``
     public func fileExtension() -> String {
-        return self.url().pathExtension
+        return self.fileUrl().pathExtension
     }
 
     
     
     
     
-    
+
     
     
     

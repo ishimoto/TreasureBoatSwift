@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A072269286753300072FA32 /* TreasureBoatSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3A072268286753300072FA32 /* TreasureBoatSwift */; };
+		3A07226B286757390072FA32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07226A286757390072FA32 /* Constants.swift */; };
+		3AFCA61D28718D0F00745122 /* SamplePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA61C28718D0F00745122 /* SamplePage1.swift */; };
+		3AFCA61F28718EAC00745122 /* SamplePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA61E28718EAC00745122 /* SamplePage2.swift */; };
 		3AFF67A22862CC3C00E3EDC3 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF67A12862CC3C00E3EDC3 /* ExampleApp.swift */; };
 		3AFF67A42862CC3C00E3EDC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF67A32862CC3C00E3EDC3 /* ContentView.swift */; };
 		3AFF67A62862CC3D00E3EDC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AFF67A52862CC3D00E3EDC3 /* Assets.xcassets */; };
@@ -14,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A07226A286757390072FA32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3AFCA61C28718D0F00745122 /* SamplePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage1.swift; sourceTree = "<group>"; };
+		3AFCA61E28718EAC00745122 /* SamplePage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage2.swift; sourceTree = "<group>"; };
 		3AFF679E2862CC3C00E3EDC3 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AFF67A12862CC3C00E3EDC3 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		3AFF67A32862CC3C00E3EDC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,18 +34,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A072269286753300072FA32 /* TreasureBoatSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A072267286753300072FA32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A07226C286757480072FA32 /* SetUp */ = {
+			isa = PBXGroup;
+			children = (
+				3A07226A286757390072FA32 /* Constants.swift */,
+			);
+			path = SetUp;
+			sourceTree = "<group>";
+		};
+		3A07226D2867575A0072FA32 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				3AFF67A32862CC3C00E3EDC3 /* ContentView.swift */,
+				3AFCA61C28718D0F00745122 /* SamplePage1.swift */,
+				3AFCA61E28718EAC00745122 /* SamplePage2.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		3AFF67952862CC3C00E3EDC3 = {
 			isa = PBXGroup;
 			children = (
 				3AFF67AF2862CC7000E3EDC3 /* Packages */,
 				3AFF67A02862CC3C00E3EDC3 /* ExampleApp */,
 				3AFF679F2862CC3C00E3EDC3 /* Products */,
+				3A072267286753300072FA32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,7 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				3AFF67A12862CC3C00E3EDC3 /* ExampleApp.swift */,
-				3AFF67A32862CC3C00E3EDC3 /* ContentView.swift */,
+				3A07226C286757480072FA32 /* SetUp */,
+				3A07226D2867575A0072FA32 /* Screens */,
 				3AFF67A52862CC3D00E3EDC3 /* Assets.xcassets */,
 				3AFF67A72862CC3D00E3EDC3 /* Preview Content */,
 			);
@@ -93,6 +128,9 @@
 			dependencies = (
 			);
 			name = ExampleApp;
+			packageProductDependencies = (
+				3A072268286753300072FA32 /* TreasureBoatSwift */,
+			);
 			productName = ExampleApp;
 			productReference = 3AFF679E2862CC3C00E3EDC3 /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -147,8 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AFCA61F28718EAC00745122 /* SamplePage2.swift in Sources */,
 				3AFF67A42862CC3C00E3EDC3 /* ContentView.swift in Sources */,
+				3AFCA61D28718D0F00745122 /* SamplePage1.swift in Sources */,
 				3AFF67A22862CC3C00E3EDC3 /* ExampleApp.swift in Sources */,
+				3A07226B286757390072FA32 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +390,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A072268286753300072FA32 /* TreasureBoatSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TreasureBoatSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3AFF67962862CC3C00E3EDC3 /* Project object */;
 }

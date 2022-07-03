@@ -15,3 +15,15 @@ a Swift Framework with TB Touch.
 Following Information can be very helpful
 
 * https://useyourloaf.com/blog/creating-swift-packages-in-xcode/
+
+
+### 2022/07/02
+
+Adding URL+ Extension
+
+* storeURL(for appGroup: String, databaseName: String) -> URL
+* storeURL(databaseName: String) -> URL
+
+Added a Shape
+
+* TBShapeRoundedCorners(corners: [.topLeft, .topRight], radius: 35)
