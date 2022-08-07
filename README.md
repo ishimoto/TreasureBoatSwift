@@ -16,6 +16,17 @@ Following Information can be very helpful
 
 * https://useyourloaf.com/blog/creating-swift-packages-in-xcode/
 
+### Dependencies
+
+* [SFSafeSymbols](https://github.com/SFSafeSymbols/SFSafeSymbols)
+
+        
+### 2022/08/07
+
+Add 2 Views for TB Apps
+
+* TBSimpleFormRow
+* TBSFSymbol
 
 ### 2022/07/02
 

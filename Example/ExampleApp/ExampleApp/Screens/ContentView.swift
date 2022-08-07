@@ -26,6 +26,14 @@ struct ContentView: View {
                     SamplePage2()
                 }
 
+                NavigationLink("Row") {
+                    SamplePage3()
+                }
+
+                NavigationLink("SFSymbol") {
+                    SamplePage4()
+                }
+
                 Spacer()
             }
             .navigationTitle("TreasureBoat Swift")

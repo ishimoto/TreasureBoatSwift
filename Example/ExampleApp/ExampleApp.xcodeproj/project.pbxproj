@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3A072269286753300072FA32 /* TreasureBoatSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3A072268286753300072FA32 /* TreasureBoatSwift */; };
 		3A07226B286757390072FA32 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07226A286757390072FA32 /* Constants.swift */; };
+		3A072270286758210072FA32 /* CharacterServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07226F286758210072FA32 /* CharacterServiceResult.swift */; };
+		3A07227328675BAF0072FA32 /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07227228675BAF0072FA32 /* CharacterService.swift */; };
+		3A072275286761E90072FA32 /* CharacterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A072274286761E90072FA32 /* CharacterScreen.swift */; };
+		3A072277286761F30072FA32 /* CharacterScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A072276286761F30072FA32 /* CharacterScreenVM.swift */; };
+		3A85C330289FA755007BD41E /* SamplePage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85C32F289FA755007BD41E /* SamplePage3.swift */; };
+		3A85C332289FA8D5007BD41E /* SamplePage4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85C331289FA8D5007BD41E /* SamplePage4.swift */; };
 		3AFCA61D28718D0F00745122 /* SamplePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA61C28718D0F00745122 /* SamplePage1.swift */; };
 		3AFCA61F28718EAC00745122 /* SamplePage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA61E28718EAC00745122 /* SamplePage2.swift */; };
 		3AFF67A22862CC3C00E3EDC3 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFF67A12862CC3C00E3EDC3 /* ExampleApp.swift */; };
@@ -19,6 +25,12 @@
 
 /* Begin PBXFileReference section */
 		3A07226A286757390072FA32 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3A07226F286758210072FA32 /* CharacterServiceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterServiceResult.swift; sourceTree = "<group>"; };
+		3A07227228675BAF0072FA32 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
+		3A072274286761E90072FA32 /* CharacterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreen.swift; sourceTree = "<group>"; };
+		3A072276286761F30072FA32 /* CharacterScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScreenVM.swift; sourceTree = "<group>"; };
+		3A85C32F289FA755007BD41E /* SamplePage3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage3.swift; sourceTree = "<group>"; };
+		3A85C331289FA8D5007BD41E /* SamplePage4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage4.swift; sourceTree = "<group>"; };
 		3AFCA61C28718D0F00745122 /* SamplePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage1.swift; sourceTree = "<group>"; };
 		3AFCA61E28718EAC00745122 /* SamplePage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePage2.swift; sourceTree = "<group>"; };
 		3AFF679E2862CC3C00E3EDC3 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,8 +74,45 @@
 				3AFF67A32862CC3C00E3EDC3 /* ContentView.swift */,
 				3AFCA61C28718D0F00745122 /* SamplePage1.swift */,
 				3AFCA61E28718EAC00745122 /* SamplePage2.swift */,
+				3A85C32F289FA755007BD41E /* SamplePage3.swift */,
+				3A85C331289FA8D5007BD41E /* SamplePage4.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		3A07226E286758030072FA32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3A07226F286758210072FA32 /* CharacterServiceResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A07227128675B990072FA32 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3A07227228675BAF0072FA32 /* CharacterService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3A0722782867F6D00072FA32 /* CharacterScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3A072274286761E90072FA32 /* CharacterScreen.swift */,
+				3A072276286761F30072FA32 /* CharacterScreenVM.swift */,
+			);
+			path = CharacterScreen;
+			sourceTree = "<group>";
+		};
+		3A0722792867F9B40072FA32 /* AwaitAsync */ = {
+			isa = PBXGroup;
+			children = (
+				3A0722782867F6D00072FA32 /* CharacterScreen */,
+				3A07226E286758030072FA32 /* Model */,
+				3A07227128675B990072FA32 /* Service */,
+			);
+			path = AwaitAsync;
 			sourceTree = "<group>";
 		};
 		3AFF67952862CC3C00E3EDC3 = {
@@ -90,6 +139,7 @@
 				3AFF67A12862CC3C00E3EDC3 /* ExampleApp.swift */,
 				3A07226C286757480072FA32 /* SetUp */,
 				3A07226D2867575A0072FA32 /* Screens */,
+				3A0722792867F9B40072FA32 /* AwaitAsync */,
 				3AFF67A52862CC3D00E3EDC3 /* Assets.xcassets */,
 				3AFF67A72862CC3D00E3EDC3 /* Preview Content */,
 			);
@@ -185,11 +235,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A07227328675BAF0072FA32 /* CharacterService.swift in Sources */,
+				3A072270286758210072FA32 /* CharacterServiceResult.swift in Sources */,
 				3AFCA61F28718EAC00745122 /* SamplePage2.swift in Sources */,
+				3A072277286761F30072FA32 /* CharacterScreenVM.swift in Sources */,
+				3A85C330289FA755007BD41E /* SamplePage3.swift in Sources */,
 				3AFF67A42862CC3C00E3EDC3 /* ContentView.swift in Sources */,
 				3AFCA61D28718D0F00745122 /* SamplePage1.swift in Sources */,
 				3AFF67A22862CC3C00E3EDC3 /* ExampleApp.swift in Sources */,
+				3A85C332289FA8D5007BD41E /* SamplePage4.swift in Sources */,
 				3A07226B286757390072FA32 /* Constants.swift in Sources */,
+				3A072275286761E90072FA32 /* CharacterScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
