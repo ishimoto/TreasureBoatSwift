@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
-import Foundation
 
+#if os(iOS)
+
+@available(iOS 15.0, *)
 public struct TBShapeRoundedCorners: Shape {
     
     var corners: UIRectCorner
@@ -32,6 +34,7 @@ public struct TBShapeRoundedCorners: Shape {
     
 }
 
+@available(iOS 15.0, *)
 struct TBShapeRoundedCorners_Previews: PreviewProvider {
     static var previews: some View {
         
@@ -41,3 +44,4 @@ struct TBShapeRoundedCorners_Previews: PreviewProvider {
         
     }
 }
+#endif

@@ -6,3 +6,15 @@
 //
 
 import SwiftUI
+
+extension View {
+    
+    public func center() -> some View {
+        HStack {
+            Spacer()
+            self
+            Spacer()
+        }
+    }
+    
+}
