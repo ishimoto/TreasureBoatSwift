@@ -77,19 +77,35 @@ extension Color {
             : Color(uiColor.darker(componentDelta: 0.45))
     }
     
-    
-    
-    
-    
-    
-
-    
-    
-
-    
-    
 #elseif os(macOS)
     
+    public init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        
+        Scanner(string: hex)
+            .scanHexInt64(&int)
+        
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+        
+        self.init(.sRGB,
+                  red: Double(r) / 255,
+                  green: Double(g) / 255,
+                  blue: Double(b) / 255,
+                  opacity: Double(a) / 255
+        )
+    }
+
     /// Transform a UIColor into a `rgb` Hex string
     /// - Returns: The hex string.
     public var rgbAsHex: String {
@@ -120,14 +136,8 @@ extension Color {
             ? Color(nsColor.lighter(componentDelta: 0.45))
             : Color(nsColor.darker(componentDelta: 0.45))
     }
-
-    
-    
-    
     
 #endif
-    
-    
 }
 
 // MARK: - UIColor
@@ -272,41 +282,64 @@ extension UIColor {
 
 extension NSColor {
     
-    
-    
-    
-    
-    
-    /* Make Color Variations */
-    
-    /**
-     * The first step is to extract red, green, blue, and alpha components from the current UIColor.
-     * Then, to each color component, add a componentDelta to make the color lighter or darker.
-     * Each color component value is between `0` and `1`.
-     */
-    private func makeColor(componentDelta: CGFloat) -> NSColor {
-        // Extract r,g,b,a components from the current NSColor
+    /// Transform a NSColor into each of the color attributes
+    /// - Returns: a tuple with `red`, `green`,  `blue` and `alpha`
+    private var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         var red: CGFloat = 0
-        var blue: CGFloat = 0
         var green: CGFloat = 0
+        var blue: CGFloat = 0
         var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         
-        getRed(
-            &red,
-            green: &green,
-            blue: &blue,
-            alpha: &alpha
-        )
+        return (red, green, blue, alpha)
+    }
+    
+    /// Transform a NSColor into a `rgb` Hex string
+    /// - Returns: The hex string.
+    public var rgbAsHex: String {
+        let redAsInt = Int(round(rgba.red * 255))
+        let greenAsInt = Int(round(rgba.green * 255))
+        let blueAsInt = Int(round(rgba.blue * 255))
         
-        // Create a new UIColor modifying each component
-        // by componentDelta, making the new UIColor either
-        // lighter or darker.
-        return NSColor(
-            red: add(componentDelta, toComponent: red),
-            green: add(componentDelta, toComponent: green),
-            blue: add(componentDelta, toComponent: blue),
-            alpha: alpha
-        )
+        var hexString = String(format: "%02X", redAsInt)
+        hexString += String(format: "%02X", greenAsInt)
+        hexString += String(format: "%02X", blueAsInt)
+        return hexString
+    }
+    
+    /// Transform a NSColor into a `rgba` Hex string
+    /// - Returns: The hex string.
+    public var rgbaAsHex: String {
+        let redAsInt = Int(round(rgba.red * 255))
+        let greenAsInt = Int(round(rgba.green * 255))
+        let blueAsInt = Int(round(rgba.blue * 255))
+        let alphaAsInt = Int(round(rgba.alpha * 255))
+        
+        var hexString = String(format: "%02X", redAsInt)
+        hexString += String(format: "%02X", greenAsInt)
+        hexString += String(format: "%02X", blueAsInt)
+        hexString += String(format: "%02X", alphaAsInt)
+        return hexString
+    }
+    
+    /// Transform a NSColor into a `argb` Hex string
+    /// - Returns: The hex string.
+    public var argbAsHex: String {
+        let redAsInt = Int(round(rgba.red * 255))
+        let greenAsInt = Int(round(rgba.green * 255))
+        let blueAsInt = Int(round(rgba.blue * 255))
+        let alphaAsInt = Int(round(rgba.alpha * 255))
+        
+        var hexString = String(format: "%02X", alphaAsInt)
+        hexString += String(format: "%02X", redAsInt)
+        hexString += String(format: "%02X", greenAsInt)
+        hexString += String(format: "%02X", blueAsInt)
+        return hexString
+    }
+    
+    public var isDark: Bool {
+        let lum = 0.2126 * rgba.red + 0.7152 * rgba.green + 0.0722 * rgba.blue
+        return lum < 0.50
     }
     
     /* Safely Add RGBA Component Values */
@@ -320,97 +353,59 @@ extension NSColor {
         return max(0, min(1, toComponent + value))
     }
     
+    /* Make Color Variations */
+    
+    /**
+     * The first step is to extract red, green, blue, and alpha components from the current UIColor.
+     * Then, to each color component, add a componentDelta to make the color lighter or darker.
+     * Each color component value is between `0` and `1`.
+     */
+    private func makeColor(componentDelta: CGFloat) -> NSColor {
+        // @see https://www.hackingwithswift.com/example-code/uicolor/how-to-read-the-red-green-blue-and-alpha-color-components-from-a-uicolor
+        
+        // Create a new UIColor modifying each component
+        // by componentDelta, making the new UIColor either
+        // lighter or darker.
+        return NSColor(
+            red: add(componentDelta, toComponent: rgba.red),
+            green: add(componentDelta, toComponent: rgba.green),
+            blue: add(componentDelta, toComponent: rgba.blue),
+            alpha: rgba.alpha
+        )
+    }
+    
     /* Make A UIColor Lighter, Darker */
     
     /**
-     * The last step is to implement the interface for obtaining a lighter or darker color.
-     * Modify the `componentDelta` value to control how much lighter or darker the resulting `UIColor` is.
+     * The makes the color lighter
+     * Modify the `componentDelta` value to control how much lighter  the resulting `NSColor` is.
      */
-    func lighter(componentDelta: CGFloat = 0.1) -> NSColor {
+    public func lighter(componentDelta: CGFloat = 0.1) -> NSColor {
         return makeColor(componentDelta: componentDelta)
     }
     
-    func darker(componentDelta: CGFloat = 0.1) -> NSColor {
+    /**
+     * The makes the color darker
+     * Modify the `componentDelta` value to control how much darker  the resulting `NSColor` is.
+     */
+    public func darker(componentDelta: CGFloat = 0.1) -> NSColor {
         return makeColor(componentDelta: -1 * componentDelta)
     }
     
-    func lighterColor(componentDelta: CGFloat = 0.1) -> Color {
+    /**
+     * The makes the color lighter
+     * Modify the `componentDelta` value to control how much lighter  the resulting `Color` is.
+     */
+    public func lighterColor(componentDelta: CGFloat = 0.1) -> Color {
         return Color(lighter(componentDelta: componentDelta))
     }
     
-    func darkerColor(componentDelta: CGFloat = 0.1) -> Color {
+    /**
+     * The makes the color darker
+     * Modify the `componentDelta` value to control how much darker  the resulting `Color` is.
+     */
+    public func darkerColor(componentDelta: CGFloat = 0.1) -> Color {
         return Color(darker(componentDelta: componentDelta))
-    }
-    
-    var isDarkColor: Bool {
-        var r, g, b, a: CGFloat
-        (r, g, b, a) = (0, 0, 0, 0)
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let lum = 0.2126 * r + 0.7152 * g + 0.0722 * b
-        return  lum < 0.50
-    }
-    
-    
-    
-    
-    
-    
-    var rgbString: String {
-        var r: CGFloat = -1
-        var g: CGFloat = -1
-        var b: CGFloat = -1
-        
-        getRed(&r, green: &g, blue: &b, alpha: nil)
-        
-        let redIntval = Int(round(r * 255))
-        let greenIntval = Int(round(g * 255))
-        let blueIntval = Int(round(b * 255))
-        
-        var res = (NSString(format: "%02X", redIntval) as String)
-        res += (NSString(format: "%02X", greenIntval) as String)
-        res += (NSString(format: "%02X", blueIntval) as String)
-        return res
-    }
-    
-    var rgbaString: String {
-        var r: CGFloat = -1
-        var g: CGFloat = -1
-        var b: CGFloat = -1
-        var a: CGFloat = -1
-        
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let redIntval = Int(round(r * 255))
-        let greenIntval = Int(round(g * 255))
-        let blueIntval = Int(round(b * 255))
-        let alphaIntval = Int(round(a * 255))
-        
-        var res = (NSString(format: "%02X", redIntval) as String)
-        res += (NSString(format: "%02X", greenIntval) as String)
-        res += (NSString(format: "%02X", blueIntval) as String)
-        res += (NSString(format: "%02X", alphaIntval) as String)
-        return res
-    }
-    
-    var argbString: String {
-        var a: CGFloat = -1
-        var r: CGFloat = -1
-        var g: CGFloat = -1
-        var b: CGFloat = -1
-        
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        let alphaIntval = Int(round(a * 255))
-        let redIntval = Int(round(r * 255))
-        let greenIntval = Int(round(g * 255))
-        let blueIntval = Int(round(b * 255))
-        
-        var res = (NSString(format: "%02X", alphaIntval) as String)
-        res += (NSString(format: "%02X", redIntval) as String)
-        res += (NSString(format: "%02X", greenIntval) as String)
-        res += (NSString(format: "%02X", blueIntval) as String)
-        return res
     }
     
 }
