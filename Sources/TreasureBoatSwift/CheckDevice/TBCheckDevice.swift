@@ -13,7 +13,7 @@ import UIKit
 import SwiftUI
 
 // To not conflict with other code add the TB identifier
-open class TBCheckDevice {
+public class TBCheckDevice {
     
     static fileprivate func getVersionCode() -> String {
         var systemInfo = utsname()
@@ -218,12 +218,24 @@ open class TBCheckDevice {
 #endif
     }
     
+    static public func isIOS() -> Bool {
 #if os(iOS)
-    
+        return true
+#else
+        return false
+#endif
+    }
+
+#if os(iOS) || os(tvOS)
+
     static public func isRetina() -> Bool {
         return UIScreen.main.scale > 1.0
     }
-    
+   
+    static public func topNotchHeight() -> CGFloat {
+        return  UIWindow.firstWindow()?.safeAreaInsets.top ?? .zero;
+    }
+
     static public var  battery : TBDeviceBattery {
         return TBDeviceBattery()
     }
@@ -236,8 +248,18 @@ open class TBCheckDevice {
         return !TBCheckDevice.isLandscape
     }
 
+    static public func isMac() -> Bool {
+        return false
+    }
+
+#elseif os(macOS)
+
+    static public func isMac() -> Bool {
+        return true
+    }
+
 #endif
-    
+
     static public func isSimulator() -> Bool {
         return type() == .simulator
     }
@@ -258,5 +280,17 @@ open class TBCheckDevice {
         return type() == .iPod
     }
 
+    //********************************************************************
+    // Helper
+    //********************************************************************
+
+    static public func gridCount() -> Int {
+        return isPhone() ? 1 : 2
+    }
+    
+    static public func gridSpace() -> CGFloat {
+        return isPhone() ? 2 : 20
+    }
+    
 }
 
