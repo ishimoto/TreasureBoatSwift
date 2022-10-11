@@ -12,12 +12,81 @@ import SwiftUI
 @available(watchOS 8.0, *)
 @available(tvOS 13.0, *)
 
+
 extension Color {
+    
+    // MARK: - AccentColor
+
+    public static let tbAccentColor: Color = Color(assetName: TBConstant.AccentColor.nameForAccentColor)
+
+    // MARK: - Shadow
     
     public static let lightShadow = Color(red: 255/255, green: 255/255, blue: 255/255)
     public static let darkShadow = Color(red: 163/255, green: 177/255, blue: 198/255)
+    
+    public static let blackTransparentLight: Color = Color(assetName: TBConstant.Shadow.nameForBlackTransparentLight)
+    public static let blacktransparentDark: Color = Color(assetName: TBConstant.Shadow.nameForBlacktransparentDark)
+
+    // MARK: - TB Colors
+
+    public static let daikoku: Color = Color(assetName: TBConstant.Color.nameForDaikoku)
+    public static let daikokuLight: Color = Color(assetName: TBConstant.Color.nameForDaikokuLight)
+    public static let daikokuTextColor: Color = daikoku.suitingTextColor()
+    public static let daikokuGradient: [Color] = [daikokuLight, daikoku]
+
+    public static let ebisu: Color = Color(assetName: TBConstant.Color.nameForEbisu)
+    public static let ebisuLight: Color = Color(assetName: TBConstant.Color.nameForEbisuLight)
+    public static let ebisuTextColor: Color = ebisu.suitingTextColor()
+    public static let ebisuGradient: [Color] = [ebisuLight, ebisu]
+
+    public static let bishamonten: Color = Color(assetName: TBConstant.Color.nameForBishamonten)
+    public static let bishamontenLight: Color = Color(assetName: TBConstant.Color.nameForBishamontenLight)
+    public static let bishamontenTextColor: Color = bishamonten.suitingTextColor()
+    public static let bishamontenGradient: [Color] = [bishamontenLight, bishamonten]
+
+    public static let benzaiten: Color = Color(assetName: TBConstant.Color.nameForBenzaiten)
+    public static let benzaitenLight: Color = Color(assetName: TBConstant.Color.nameForBenzaitenLight)
+    public static let benzaitenTextColor: Color = benzaiten.suitingTextColor()
+    public static let benzaitenGradient: [Color] = [benzaitenLight, benzaiten]
+
+    public static let fukurokuju: Color = Color(assetName: TBConstant.Color.nameForFukurokuju)
+    public static let fukurokujuLight: Color = Color(assetName: TBConstant.Color.nameForFukurokujuLight)
+    public static let fukurokujuTextColor: Color = fukurokuju.suitingTextColor()
+    public static let fukurokujuGradient: [Color] = [fukurokujuLight, fukurokuju]
+
+    public static let jurōjin: Color = Color(assetName: TBConstant.Color.nameForJurōjin)
+    public static let jurōjinLight: Color = Color(assetName: TBConstant.Color.nameForFJurōjinLight)
+    public static let jurōjinTextColor: Color = jurōjin.suitingTextColor()
+    public static let jurōjinGradient: [Color] = [jurōjinLight, jurōjin]
+
+    public static let budai: Color = Color(assetName: TBConstant.Color.nameForBudai)
+    public static let budaiLight: Color = Color(assetName: TBConstant.Color.nameForBudaiLight)
+    public static let budaiTextColor: Color = jurōjin.suitingTextColor()
+    public static let budaiGradient: [Color] = [budaiLight, budai]
+
+    // MARK: - Color Extension
 
 #if os(tvOS) || os(iOS)
+    
+    /// Get the  Color form the Media Asset Catalog (TreasureBoatSwift Bundle).
+    /// - parameter assetName: the name of the color from this Bundle
+    /// - Returns: The Color.
+    public init(assetName: String) {
+        let uiColor = UIColor(named: assetName, in: .module, compatibleWith: .none)
+        if uiColor == nil {
+            self.init(uiColor: .red)
+            return
+        }
+        self.init(uiColor: uiColor!)
+    }
+    
+    /// Make a color 20% darker
+    /// - Returns: a 20% darker Color.
+    public static func darkerButtonTextColor(_ color: Color) -> Color {
+        let uiColor: UIColor = UIColor(color)
+        let darkenColor: Color = uiColor.darkerColor(componentDelta: 0.2)
+        return darkenColor
+    }
     
     public init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -79,6 +148,28 @@ extension Color {
     
 #elseif os(macOS)
     
+    /// Get the  Color form the Media Asset Catalog (TreasureBoatSwift Bundle).
+    /// - parameter assetName: the name of the color from this Bundle
+    /// - Returns: The Color.
+    public init(assetName: String) {
+        #warning("Change to NS")
+        let uiColor = UIColor(named: assetName, in: .module, compatibleWith: .none)
+        if uiColor == nil {
+            self.init(uiColor: .red)
+            return
+        }
+        self.init(uiColor: uiColor!)
+    }
+    
+    /// Make a color 20% darker
+    /// - Returns: a 20% darker Color.
+    public static func darkerButtonTextColor(_ color: Color) -> Color {
+#warning("Change to NS")
+        let uiColor: UIColor = UIColor(color)
+        let darkenColor: Color = uiColor.darkerColor(componentDelta: 0.2)
+        return darkenColor
+    }
+
     public init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
@@ -140,7 +231,7 @@ extension Color {
 #endif
 }
 
-// MARK: - UIColor
+// MARK: - UIColor Extension
 
 #if os(iOS)
 
@@ -276,7 +367,7 @@ extension UIColor {
 
 #endif
 
-// MARK: - NSColor
+// MARK: - NSColor Extension
 
 #if os(macOS)
 
