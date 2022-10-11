@@ -27,7 +27,16 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         
         /* SFSafe Symbols */
-        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(3, 0, 0))
+        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(3, 0, 0)),
+        
+        /* BetterCodable */
+        .package(url: "https://github.com/marksands/BetterCodable", from: Version(0, 4, 0)),
+
+        /* swift-collections */
+        .package(url: "https://github.com/apple/swift-collections.git", from: Version(1, 0, 0)),
+
+        /* SwiftDate */
+        .package(url: "https://github.com/malcommac/SwiftDate", from: Version(7, 0, 0))
         
         /* Thanks to CheckDevice 1.0.5, becaus it does not work on macOS the source code moved in and got fixed */
         // .package(url: "https://github.com/ugurethemaydin/CheckDevice", from: Version(1, 0, 0))
