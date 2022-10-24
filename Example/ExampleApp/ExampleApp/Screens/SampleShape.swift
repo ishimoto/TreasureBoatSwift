@@ -1,5 +1,5 @@
 //
-//  SamplePage2.swift
+//  SampleShape.swift
 //  ExampleApp
 //
 //  Created by Ken Ishimoto on 2022/07/03.
@@ -8,7 +8,7 @@
 import SwiftUI
 import TreasureBoatSwift
 
-struct SamplePage2: View {
+struct SampleShape: View {
     var body: some View {
         VStack {
             ZStack {
@@ -21,18 +21,16 @@ struct SamplePage2: View {
                     .padding()
             }
             
-            // ...
+            Spacer()
             
         }
-        .navigationTitle("Shapes")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Shape")
     }
 }
 
-struct SamplePage2_Previews: PreviewProvider {
+struct SampleShape_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SamplePage2()
-        }
+        SampleShape()
+            .embedNavigationView()
     }
 }

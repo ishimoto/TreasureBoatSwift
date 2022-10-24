@@ -21,13 +21,15 @@ extension View {
         return NavigationView { self }
     }
     
+#if os(macOS)
     public func screenRect() -> CGRect {
-#if os(iOS) || os(tvOS)
-        return UIScreen.main.bounds
-#elseif os(macOS)
         return NSScreen.main!.visibleFrame
-#endif
     }
+#elseif os(iOS) || os(tvOS)
+    public func screenRect() -> CGRect {
+        return UIScreen.main.bounds
+    }
+#endif
     
     public func safeAreaBottom() -> CGFloat {
 #if os(iOS)
@@ -38,7 +40,7 @@ extension View {
     }
     
     func isMacOS()->Bool{
-        return TBCheckDevice.isMac()
+        return TBDevice.isMac()
     }
     
 #if os(iOS)

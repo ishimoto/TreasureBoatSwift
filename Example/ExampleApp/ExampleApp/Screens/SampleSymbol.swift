@@ -8,21 +8,20 @@
 import SwiftUI
 import TreasureBoatSwift
 
-struct SamplePage4: View {
+struct SampleSymbol: View {
     var body: some View {
         VStack {
-            Text("TBSFSymbol")
             TBSFSymbol(systemSymbol: .keyboard, backgroundColor: .orange, foregroundColor: .indigo)
             
             Spacer()
         }
+        .navigationTitle("TBSFSymbol")
     }
 }
 
-struct SamplePage4_Previews: PreviewProvider {
+struct SampleSymbol_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SamplePage4()
-        }
+        SampleSymbol()
+            .embedNavigationView()
     }
 }

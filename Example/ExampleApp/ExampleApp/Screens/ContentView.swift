@@ -18,20 +18,28 @@ struct ContentView: View {
                     .font(.title)
                 Divider()
                 
-                NavigationLink("Extensions") {
-                    SamplePage1()
+                NavigationLink("String & Extensions") {
+                    SampleString()
                 }
 
-                NavigationLink("Shapes") {
-                    SamplePage2()
+                NavigationLink("Shape") {
+                    SampleShape()
                 }
 
                 NavigationLink("Row") {
-                    SamplePage3()
+                    SampleRows()
                 }
 
                 NavigationLink("SFSymbol") {
-                    SamplePage4()
+                    SampleSymbol()
+                }
+
+                NavigationLink("Audio") {
+                    SampleAudio()
+                }
+
+                NavigationLink("Color") {
+                    SampleColor()
                 }
 
                 Spacer()

@@ -1,5 +1,5 @@
 //
-//  SamplePage1.swift
+//  SampleString.swift
 //  ExampleApp
 //
 //  Created by Ken Ishimoto on 2022/07/03.
@@ -8,7 +8,7 @@
 import SwiftUI
 import TreasureBoatSwift
 
-struct SamplePage1: View {
+struct SampleString: View {
     
     var body: some View {
     
@@ -74,8 +74,7 @@ struct SamplePage1: View {
 
             } //: List
         }
-        .navigationTitle("Extensions")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("String & Extensions")
 
     }
     
@@ -89,10 +88,9 @@ struct SamplePage1: View {
 
 }
 
-struct SamplePage1_Previews: PreviewProvider {
+struct SampleString_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SamplePage1()
-        }
+        SampleString()
+            .embedNavigationView()
     }
 }

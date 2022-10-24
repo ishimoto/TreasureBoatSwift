@@ -9,12 +9,12 @@ import SwiftUI
 
 @available(iOS 13.0, *)
 @available(OSX 11.0, *)
-@available(watchOS 8.0, *)
 @available(tvOS 13.0, *)
-
 
 extension Color {
     
+#if os(tvOS) || os(iOS) || os(macOS)
+
     // MARK: - AccentColor
 
     public static let tbAccentColor: Color = Color(assetName: TBConstant.AccentColor.nameForAccentColor)
@@ -63,6 +63,8 @@ extension Color {
     public static let budaiLight: Color = Color(assetName: TBConstant.Color.nameForBudaiLight)
     public static let budaiTextColor: Color = jurōjin.suitingTextColor()
     public static let budaiGradient: [Color] = [budaiLight, budai]
+
+#endif
 
     // MARK: - Color Extension
 
@@ -233,7 +235,7 @@ extension Color {
 
 // MARK: - UIColor Extension
 
-#if os(iOS)
+#if os(tvOS) || os(iOS) || os(watchOS)
 
 extension UIColor {
     

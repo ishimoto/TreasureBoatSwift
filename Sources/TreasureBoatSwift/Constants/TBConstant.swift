@@ -38,6 +38,9 @@ public struct TBConstant {
         public static let nameForFukurokuju: String = "Fukurokuju.jpg"
         public static let nameForJurōjin: String = "Jurōjin.jpg"
         
+        public static let tbShip: String = "TBShip"
+        public static let tbLogo: String = "TBLogo"
+
     }
     
     public struct HeadImage {
