@@ -1,27 +1,26 @@
 //
-//  CustomKeyValueModel.swift
+//  TBKeyValueModel.swift
 //  TB To Go iOS
 //
 //  Created by Ken Ishimoto on 2021/10/15.
 //
 
 import SwiftUI
-import TreasureBoatSwift
 
-// MARK: - CustomKeyValueResponse (The Response from the Server)
+// MARK: - TBKeyValueResponse (The Response from the Server)
 
-struct CustomKeyValueResponse: Codable {
+public struct TBKeyValueResponse: Codable {
     
     /** `TBResponse` */
     
-    let success: Bool
-    let error: TBResponseError
-    let javaClass: String?
-    let count: Int?
-    let version: Int?
-    let navVersion: Int?
-    let message: String?
-    let keyValues: [CustomKeyValue]
+    public let success: Bool
+    public let error: TBResponseError
+    public let javaClass: String?
+    public let count: Int?
+    public let version: Int?
+    public let navVersion: Int?
+    public let message: String?
+    public let keyValues: [TBKeyValueData]
     
     private enum CodingKeys: String, CodingKey {
         case success = "success"
@@ -36,12 +35,12 @@ struct CustomKeyValueResponse: Codable {
     
 }
 
-// MARK: - CustomKeyValue (The Data Model)
+// MARK: - TBKeyValueData (The Data Model)
 
-struct CustomKeyValue: Codable {
+public struct TBKeyValueData: Codable {
     
-    let key: String
-    let value: String
+    public let key: String
+    public let value: String
     
     private enum CodingKeys: String, CodingKey {
         case key = "key"
