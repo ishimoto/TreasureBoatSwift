@@ -9,10 +9,14 @@ import Foundation
 
 public class TBServerToMobileData {
     
-    #warning("Use shared Key")
+#warning("Use shared Key")
     static let SHARED_KEY: String = "bba0a0ec-3154-4f69-80c5-6a8f0a321598"
     
     var task: String
+    
+    public init(task: String) {
+        self.task = task
+    }
     
     private var _queryDescription: String = ""
     private var _sortDescription: String = ""
@@ -29,10 +33,8 @@ public class TBServerToMobileData {
     
     private var _imageRender: String = ""
     
-    
-    public init(task: String) {
-        self.task = task
-    }
+    private var _dataPostLocation: String = ""
+    private var _dataPostDictionary: [String:Any] =  [:]
     
     public var queryDescription: String {
         get {
@@ -98,7 +100,7 @@ public class TBServerToMobileData {
             }
         }
     }
-
+    
     public var treasureboatID: String {
         get {
             return self._treasureboatID
@@ -155,7 +157,7 @@ public class TBServerToMobileData {
             }
         }
     }
-   
+    
     public var imageRender: String {
         get {
             return self._imageRender
@@ -168,37 +170,48 @@ public class TBServerToMobileData {
             }
         }
     }
-   
-    public func postHeader() -> [String:String] {
+    
+    public var dataPostLocation: String {
+        get {
+            return self._dataPostLocation
+        }
+        set {
+            if newValue.isEmpty {
+                fatalError("invalid value for dataPostLocation")
+            } else {
+                self._dataPostLocation = newValue
+            }
+        }
+    }
+    
+    public var dataPostDictionary: [String:Any]  {
+        get {
+            return self._dataPostDictionary
+        }
+        set {
+            if newValue.isEmpty {
+                fatalError("invalid value for dataPostDictionary")
+            } else {
+                self._dataPostDictionary = newValue
+            }
+        }
+    }
+    
+    public func addToPostDictionary(key: String, value: String) {
+        dataPostDictionary[key] = value
+    }
+    
+    func postHeader() -> [String:String] {
         let postHeader: [String:String] = [
             "Content-Type" : "text/json"
         ]
         return postHeader;
     }
-
+    
     func postData() -> [String:Any] {
         
-        #warning("FIXME  queryDescription {}")
-        print("searchValue = \(searchValue)")
-        
-        
-        
-        let postData: [String:Any] = [
+        var postData: [String:Any] = [
             "task" : task,
-            "dpk" : dpk,
-            "queryDescription" : queryDescription,
-            "sortDescription" : sortDescription,
-            "batch" : batch,
-            
-            "query" : oldQuery,
-            "sort" : oldSort,
-            
-            // Person ID (can be null and use tbid instead)
-            "pid" : personID,
-            "tbid" : treasureboatID,
-            
-            // Rendering
-            "imageRender" : imageRender,
             
             // set the app Version Build to show which Client Version is connecting
             // in some cases this help to return an error for please update your App
@@ -210,9 +223,56 @@ public class TBServerToMobileData {
             // FIXME Number of Navigation (TODO)
             "navigation" : 0
         ]
+
+        if !dpk.isEmpty {
+            postData["dpk"] = dpk
+        }
+
+        if !batch.isEmpty {
+            postData["batch"] = batch
+        }
+
+        if !oldQuery.isEmpty || !queryDescription.isEmpty {
+            postData["query"] = oldQuery
+            postData["queryDescription"] = queryDescription
+        }
+
+        if !oldSort.isEmpty || !sortDescription.isEmpty {
+            postData["sort"] = oldSort
+            postData["sortDescription"] = sortDescription
+        }
+
+        if !batch.isEmpty {
+            postData["batch"] = batch
+        }
+
+        if !personID.isEmpty {
+            postData["pid"] = personID
+        }
+
+        if !treasureboatID.isEmpty {
+            postData["tbid"] = treasureboatID
+        }
+
+        if !imageRender.isEmpty {
+            postData["imageRender"] = imageRender
+        }
+        
+        if !dataPostLocation.isEmpty {
+            // The post location
+            postData["post"] = dataPostLocation
+            
+            // The post data Object
+            postData["data"] = dataPostDictionary
+        }
+                
         return postData;
     }
     
+    
+    public func httpHeader() -> [String:String] {
+        return postHeader()
+    }
     
     public func httpBody() -> Data {
         guard let httpBody = try? JSONSerialization.data(withJSONObject: postData(), options: []) else {
@@ -222,4 +282,15 @@ public class TBServerToMobileData {
         return httpBody
     }
     
+    public var debugDescription: String {
+        var description: String = "\n"
+        description += "HTTP HEADER:\n"
+        description += "    \(postHeader())\n"
+        description += "HTTP BODY:\n"
+        
+        postData().forEach { (key: String, value: Any) in
+            description += "    \(key) -> \(value)\n"
+        }
+        return description
+    }
 }
