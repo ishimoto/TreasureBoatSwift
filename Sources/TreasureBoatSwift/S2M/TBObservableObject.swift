@@ -19,13 +19,22 @@ open class TBObservableObject: ObservableObject {
     @Published public var showFailureMessage: Bool = false
     @Published public var failureMessage: String = ""
 
+    @Published public var showSuccessMessage: Bool = false
+    @Published public var successMessage: String = ""
+
     private func clearFailure() {
         showFailureMessage = false
         failureMessage = ""
     }
-    
+
+    private func clearSuccess() {
+        showSuccessMessage = false
+        successMessage = ""
+    }
+
     public func clearMessage() {
         clearFailure()
+        clearSuccess()
         loadingState = .loading
     }
 
@@ -41,6 +50,15 @@ open class TBObservableObject: ObservableObject {
             self.failureMessage = message
             self.showFailureMessage = true
             self.loadingState = .failed
+        }
+    }
+    
+    @MainActor
+    public func showSuccessMessage(_ message: String) {
+        Task { @MainActor in
+            self.successMessage = message
+            self.showSuccessMessage = true
+            self.loadingState = .success
         }
     }
 
