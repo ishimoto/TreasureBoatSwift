@@ -26,6 +26,8 @@ public class TBServerToMobileData {
     private var _personID: String = ""
     private var _treasureboatID = SHARED_KEY
     
+    private var _domain: String = ""
+    
     private var _searchValue: String = "";
     
     private var _oldQuery: String = "" // OLD
@@ -115,6 +117,19 @@ public class TBServerToMobileData {
                 } else {
                     self._treasureboatID = TBServerToMobileData.SHARED_KEY
                 }
+            }
+        }
+    }
+    
+    public var domain: String {
+        get {
+            return self._domain
+        }
+        set {
+            if newValue.isEmpty {
+                fatalError("invalid value for domain")
+            } else {
+                self._domain = newValue
             }
         }
     }
@@ -252,6 +267,10 @@ public class TBServerToMobileData {
 
         if !treasureboatID.isEmpty {
             postData["tbid"] = treasureboatID
+        }
+
+        if !domain.isEmpty {
+            postData["domain"] = domain
         }
 
         if !imageRender.isEmpty {
