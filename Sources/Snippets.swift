@@ -12,7 +12,16 @@ struct Snippets {
     // dismiss
     // @Environment(\.dismiss) private var dismiss
     
-    
+    // CALLBACK
+    /*
+     Task { @MainActor in
+        await …
+     }
+     
+     typealias CompletionHandler = () -> Void
+     let onDataChanged: CompletionHandler
+     */
+
     
     
 }
