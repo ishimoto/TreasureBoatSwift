@@ -11,21 +11,20 @@ let package = Package(
         .iOS(.v16),
         .macOS(.v12),
         .tvOS(.v11),
-        .watchOS(.v8)
+        .watchOS(.v9)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "TreasureBoatSwift",
             targets: [
-                "TreasureBoatSwift", "TBSwiftiOS"
+                "TreasureBoatSwift",
+                "TBSwiftiOS",
+                "LogTarget"
             ]
         )
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-        
         /* SFSafe Symbols */
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(4, 0, 0)),
         
@@ -38,11 +37,30 @@ let package = Package(
         /* SwiftDate */
         .package(url: "https://github.com/malcommac/SwiftDate", from: Version(7, 0, 0)),
         
-        /* Swift-JWT */
-        .package(url: "https://github.com/IBM-Swift/Swift-JWT.git", from: Version(3, 0, 0)),
+        /*
+            SwiftJWT
+                * Cryptor
+                * CryptorECC
+                * CryptorRSA
+                * KituraContracts
+                * LoggerAPI
+                * swift-log
+         */
+        .package(url: "https://github.com/IBM-Swift/Swift-JWT.git", from: Version(4, 0, 0)),
         
         /* DeviceKit */
-        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(4, 0, 0))
+        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(4, 0, 0)),
+        
+        /* SwiftUILogger */
+        .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
+
+        /*
+            CocoaLumberjack
+                * swift-log
+
+            Note that you may need to add both products, CocoaLumberjack and CocoaLumberjackSwift to your target since SPM sometimes fails to detect that CocoaLumerjackSwift depends on CocoaLumberjack.
+         */
+        .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: Version(3, 8, 0))
 
     ],
     targets: [
@@ -53,7 +71,13 @@ let package = Package(
             name: "TreasureBoatSwift",
             // The target’s dependencies on other entities inside or outside the package.
             dependencies: [
-                "SFSafeSymbols"
+                .product(name: "SFSafeSymbols", package: "SFSafeSymbols"),
+                .product(name: "BetterCodable", package: "BetterCodable"),
+                .product(name: "SwiftDate", package: "SwiftDate"),
+                .product(name: "DeviceKit", package: "DeviceKit"),
+//                .product(name: "Swift-JWT", package: "SwiftJWT"),
+                .target(name: "LogTarget"),
+                .target(name: "TBSwiftiOS")
             ],
             // The path of the target, relative to the package root.
             path: "Sources",
@@ -67,11 +91,21 @@ let package = Package(
                 .process("Sound")
             ]
         ),
+        
+        .target(
+            name: "LogTarget",
+            dependencies: [
+                .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
+                .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
+            ],
+            path: "SourcesLogging",
+            resources: []
+        ),
+        
         .target(
             name: "TBSwiftiOS",
             dependencies: [
-                "TreasureBoatSwift",
-                "SFSafeSymbols"
+                .product(name: "SwiftUILogger", package: "SwiftUILogger", condition: .when(platforms: [.iOS]))
             ],
             path: "Souces_iOS",
             resources: []

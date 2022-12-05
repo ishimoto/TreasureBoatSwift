@@ -35,9 +35,11 @@ extension String {
         return self.fileUrl().pathExtension
     }
 
-    
-    
-    
+    /// returns the last path seperated by '/'
+    public var lastPathComponent: String {
+        return String(self.split(separator: "/").last ?? "")
+    }
+
     
 
     

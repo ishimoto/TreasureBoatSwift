@@ -41,10 +41,7 @@ open class TBObservableObject: ObservableObject {
     @MainActor
     public func showFailureMessage(_ message: String) {
         let _message = String(describing: self) + " : \(message)"
-        
-        print(_message)
-        #warning("Fix LOG")
-        //log.info(_message) // TODO
+        Log.info(_message)
         
         Task { @MainActor in
             self.failureMessage = message
