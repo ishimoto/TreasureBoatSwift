@@ -22,4 +22,13 @@ extension UUID {
         return false
     }
 
+    public static func myTreasureBoatID() -> String {
+        var tbid: String = UserDefaults.standard.string(forKey: TBConstant.AppStorage.TreasureBoatID) ?? ""
+        if UUID.isValid(tbid) {
+            #warning("Should be Shared ID?")
+            tbid = "n/a"
+        }
+        return tbid
+    }
+
 }

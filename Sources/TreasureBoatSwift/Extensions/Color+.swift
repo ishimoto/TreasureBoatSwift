@@ -10,6 +10,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 @available(OSX 11.0, *)
 @available(tvOS 13.0, *)
+@available(watchOS 9.0, *)
 
 extension Color {
     
@@ -25,8 +26,8 @@ extension Color {
     public static let darkShadow = Color(red: 163/255, green: 177/255, blue: 198/255)
     
     public static let blackTransparentLight: Color = Color(assetName: TBConstant.Shadow.nameForBlackTransparentLight)
-    public static let blacktransparentDark: Color = Color(assetName: TBConstant.Shadow.nameForBlacktransparentDark)
-
+    public static let blacktransparentDark: Color = Color(assetName: TBConstant.Shadow.nameForBlacktransparentDark)    
+    
     // MARK: - TB Colors
 
     public static let daikoku: Color = Color(assetName: TBConstant.Color.nameForDaikoku)
@@ -82,6 +83,10 @@ extension Color {
         self.init(uiColor: uiColor!)
     }
     
+#endif
+
+#if os(tvOS) || os(iOS) || os(watchOS)
+
     /// Make a color 20% darker
     /// - Returns: a 20% darker Color.
     public static func darkerButtonTextColor(_ color: Color) -> Color {
@@ -229,6 +234,17 @@ extension Color {
             ? Color(nsColor.lighter(componentDelta: 0.45))
             : Color(nsColor.darker(componentDelta: 0.45))
     }
+    
+#elseif os(watchOS)
+
+    /// Check if the Color is a dark color
+    /// - Returns: true if the color is a dark color.
+     public var isDark: Bool {
+        return UIColor(self).isDark
+    }
+
+    
+    
     
 #endif
 }
