@@ -10,25 +10,28 @@ import Foundation
 extension UUID {
     
     public static func isValid(_ uuid: String?) -> Bool {
-        if ((uuid?.isEmpty) != nil) {
-            return false
-        }
         
-        if uuid?.count == 36 {
-            if UUID(uuidString: uuid!) != nil {
-                return true
+        if let uuid {
+            if (uuid.isEmpty) {
+                return false
+            }
+            
+            if uuid.count == 36 {
+                if UUID(uuidString: uuid) != nil {
+                    return true
+                }
             }
         }
+        
         return false
     }
-
+    
     public static func myTreasureBoatID() -> String {
         var tbid: String = UserDefaults.standard.string(forKey: TBConstant.AppStorage.TreasureBoatID) ?? ""
         if UUID.isValid(tbid) {
-            #warning("Should be Shared ID?")
-            tbid = "n/a"
+            tbid = TBConstant.SharedID.SharedTreasureBoatID
         }
         return tbid
     }
-
+    
 }

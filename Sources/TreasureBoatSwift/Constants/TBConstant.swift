@@ -42,6 +42,13 @@ public struct TBConstant {
         
     }
     
+    public struct SharedID {
+        
+        // This ID is used when not a correct user ID is setup. so getting shared Videos to watch
+        public static let SharedTreasureBoatID = "576c2221-01dd-4079-ae54-4e7a084f0551"
+        
+    }
+    
     public struct Color {
         
         public static let nameForBenzaiten: String = "ColorBenzaiten"

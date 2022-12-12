@@ -60,3 +60,59 @@ public struct ZStackModifier: ViewModifier {
         }
     }
 }
+
+public struct TitleModifier: ViewModifier {
+    
+    
+    public init() {
+        // ...
+    }
+
+
+    public func body(content: Content) -> some View {
+        content
+            .font(.system(.title, design: .serif))
+            .foregroundColor(.accentColor)
+            .padding(8)
+    }
+}
+
+#if os(iOS)
+
+public struct TBFieldModifier: ViewModifier {
+    
+    
+    public init() {
+        // ...
+    }
+
+
+    public func body(content: Content) -> some View {
+        content
+            .textFieldStyle(.plain)
+            .padding(.vertical, 10)
+            .padding(.horizontal)
+            .background(Color.gray.opacity(0.25))
+            .cornerRadius(10)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+    }
+}
+
+public struct TBiPhoneTopNotchModifier: ViewModifier {
+    
+    
+    public init() {
+        // ...
+    }
+
+
+    public func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 15)
+            .padding(.bottom)
+            .padding(.top, TBDevice.topNotchHeight())
+    }
+}
+
+#endif

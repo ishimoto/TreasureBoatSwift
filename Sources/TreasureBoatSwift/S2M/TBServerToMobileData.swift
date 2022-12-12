@@ -9,9 +9,6 @@ import Foundation
 
 public class TBServerToMobileData {
     
-#warning("Use shared Key")
-    static let SHARED_KEY: String = "bba0a0ec-3154-4f69-80c5-6a8f0a321598"
-    
     var task: String
     
     public init(task: String) {
@@ -24,7 +21,7 @@ public class TBServerToMobileData {
     private var _dpk: String = ""
     
     private var _personID: String = ""
-    private var _treasureboatID = SHARED_KEY
+    private var _treasureboatID = TBConstant.SharedID.SharedTreasureBoatID
     
     private var _domain: String = ""
     
@@ -108,14 +105,14 @@ public class TBServerToMobileData {
             return self._treasureboatID
         }
         set {
-            
             if newValue.isEmpty {
-                self._treasureboatID = TBServerToMobileData.SHARED_KEY
+                self._treasureboatID = TBConstant.SharedID.SharedTreasureBoatID
             } else {
+                Log.info("set treasureboatID for request to \(newValue)")
                 if UUID.isValid(newValue) {
                     self._treasureboatID = newValue
                 } else {
-                    self._treasureboatID = TBServerToMobileData.SHARED_KEY
+                    self._treasureboatID = TBConstant.SharedID.SharedTreasureBoatID
                 }
             }
         }
