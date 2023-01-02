@@ -17,10 +17,16 @@ extension View {
         }
     }
     
-    public func embedNavigationView() -> some View {
-        return NavigationView { self }
-    }
     
+    /// DEPRECATED : use embedNavigationStack
+    public func embedNavigationView() -> some View {
+        return NavigationStack { self }
+    }
+
+    public func embedNavigationStack() -> some View {
+        return NavigationStack { self }
+    }
+
 #if os(macOS)
     public func screenRect() -> CGRect {
         return NSScreen.main!.visibleFrame

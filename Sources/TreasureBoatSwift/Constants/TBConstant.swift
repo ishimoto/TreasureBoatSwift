@@ -28,6 +28,14 @@ public struct TBConstant {
         
     }
     
+    public struct Keychain {
+        
+        /** The Key where the profile get saved into the keychain */
+        public static let ProfileKey = "profile"
+
+    }
+
+    
     public struct TBPolicy {
         
         /* Show Server Info on Account Page [true/false] */
