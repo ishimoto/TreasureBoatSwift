@@ -127,7 +127,13 @@ public enum Log {
         Log.handleLog(level: .info, str: str.description, context: context)
         return EmptyView()
     }
-    
+
+    public static func viewEvent(_ str: String, file: String = #file, function: String = #function, line: Int = #line) -> some View {
+        let context = Context(file: file, function: function, line: line)
+        Log.handleLog(level: .info, str: str.description, context: context)
+        return EmptyView()
+    }
+
     public static func showLoggerView() -> some View {
 #if os(iOS)
         return LoggerView(logger: logger)
