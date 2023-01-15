@@ -49,7 +49,7 @@ let package = Package(
         .package(url: "https://github.com/IBM-Swift/Swift-JWT.git", from: Version(4, 0, 0)),
         
         /* DeviceKit */
-        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(4, 0, 0)),
+        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(5, 0, 0)),
         
         /* SwiftUILogger */
         .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
