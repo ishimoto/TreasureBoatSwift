@@ -9,7 +9,7 @@ let package = Package(
     name: "TreasureBoatSwift",
     platforms: [
         .iOS(.v16),
-        .macOS(.v12),
+        .macOS(.v13),
         .tvOS(.v11),
         .watchOS(.v9)
     ],
