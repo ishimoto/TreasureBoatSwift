@@ -68,7 +68,7 @@ public struct TBLinkRow: View {
                 Image(systemSymbol: .chevronRight)
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
             } //: Button
-            .buttonStyle(TreasureBoatButtonStyle())
+            .buttonStyle(TBDefaultButtonStyle())
             
 #endif
             
