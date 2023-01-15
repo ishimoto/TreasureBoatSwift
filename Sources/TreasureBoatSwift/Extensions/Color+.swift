@@ -159,21 +159,19 @@ extension Color {
     /// - parameter assetName: the name of the color from this Bundle
     /// - Returns: The Color.
     public init(assetName: String) {
-        #warning("Change to NS")
-        let uiColor = UIColor(named: assetName, in: .module, compatibleWith: .none)
-        if uiColor == nil {
-            self.init(uiColor: .red)
+        let nsColor = NSColor(named: assetName, bundle: .module)
+        if let nsColor {
+            self.init(nsColor: nsColor)
             return
         }
-        self.init(uiColor: uiColor!)
+        self.init(nsColor: .red)
     }
     
     /// Make a color 20% darker
     /// - Returns: a 20% darker Color.
     public static func darkerButtonTextColor(_ color: Color) -> Color {
-#warning("Change to NS")
-        let uiColor: UIColor = UIColor(color)
-        let darkenColor: Color = uiColor.darkerColor(componentDelta: 0.2)
+        let nsColor: NSColor = NSColor(color)
+        let darkenColor: Color = nsColor.darkerColor(componentDelta: 0.2)
         return darkenColor
     }
 
