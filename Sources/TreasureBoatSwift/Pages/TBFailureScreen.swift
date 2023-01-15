@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if os(tvOS) || os(iOS) || os(macOS)
+#if os(tvOS) || os(iOS)
 public struct TBFailureScreen: View {
     
     var message: String
@@ -23,7 +23,7 @@ public struct TBFailureScreen: View {
             
             VStack {
                 Spacer()
-                
+                                
                 Image(assetName: TBConstant.HeadImage.nameForDaikoku)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

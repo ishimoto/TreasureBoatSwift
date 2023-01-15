@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if os(tvOS) || os(iOS) || os(macOS)
+#if os(tvOS) || os(iOS)
 public struct TBLoadingScreen: View {
         
     public init() {
