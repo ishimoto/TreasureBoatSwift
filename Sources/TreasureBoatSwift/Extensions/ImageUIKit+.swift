@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if (iOS || watchOS || tvOS)
+#if os(tvOS) || os(iOS) || os(watchOS)
 
 import UIKit
 
