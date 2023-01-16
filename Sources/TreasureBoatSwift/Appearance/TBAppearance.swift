@@ -11,11 +11,11 @@ import SwiftUI
 #if os(macOS)
 
 @available(OSX 11.0, *)
-struct TBAppearance {
+public struct TBAppearance {
     
     @AppStorage(TBConstant.AppStorage.AppTheme) var appTheme: ETBAppearance = .system
     
-    func switchTheme() {
+    public func switchTheme() {
         switch appTheme {
         case .dark:
             NSApp.appearance = NSAppearance(named: .darkAqua)
