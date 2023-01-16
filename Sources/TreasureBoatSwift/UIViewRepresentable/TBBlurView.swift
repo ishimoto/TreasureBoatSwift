@@ -7,30 +7,6 @@
 
 import SwiftUI
 
-#if os(iOS)
-
-@available(iOS 14.0, *)
-public struct TBBlurView: UIViewRepresentable {
-    
-    var style: UIBlurEffect.Style
-    
-    public init() {
-        // ...
-    }
-
-    public func makeUIView(context: Context) -> UIVisualEffectView {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: style))
-        return view
-    }
-    
-    public func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        // ...
-    }
-}
-
-#endif
-
-
 #if os(macOS)
 
 @available(OSX 11.0, *)
