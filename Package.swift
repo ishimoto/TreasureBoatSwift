@@ -7,23 +7,32 @@ import PackageDescription
 
 let package = Package(
     name: "TreasureBoatSwift",
+    
     platforms: [
         .iOS(.v16),
         .macOS(.v13),
         .tvOS(.v11),
         .watchOS(.v9)
     ],
+    
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "TreasureBoatSwift",
             targets: [
                 "TreasureBoatSwift",
-                "TBSwiftiOS",
-                "LogTarget"
+                "TBSwiftiOS"
+            ]
+        ),
+        .library(
+            name: "TreasureBoatSwiftMacOS",
+            targets: [
+                "TreasureBoatSwift",
+                "TBSwiftmacOS"
             ]
         )
     ],
+    
     dependencies: [
         /* SFSafe Symbols */
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(4, 0, 0)),
@@ -63,6 +72,7 @@ let package = Package(
         .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: Version(3, 8, 0))
 
     ],
+    
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
@@ -74,10 +84,9 @@ let package = Package(
                 .product(name: "SFSafeSymbols", package: "SFSafeSymbols"),
                 .product(name: "BetterCodable", package: "BetterCodable"),
                 .product(name: "SwiftDate", package: "SwiftDate"),
-                .product(name: "DeviceKit", package: "DeviceKit"),
-//                .product(name: "Swift-JWT", package: "SwiftJWT"),
-                .target(name: "LogTarget"),
-                .target(name: "TBSwiftiOS")
+                //                .product(name: "Swift-JWT", package: "SwiftJWT"),
+                .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
+                .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
             ],
             // The path of the target, relative to the package root.
             path: "Sources",
@@ -93,21 +102,31 @@ let package = Package(
         ),
         
         .target(
-            name: "LogTarget",
+            name: "TBLogTarget",
             dependencies: [
                 .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
                 .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
             ],
-            path: "SourcesLogging",
+            path: "TBLogTarget",
             resources: []
         ),
         
         .target(
             name: "TBSwiftiOS",
             dependencies: [
-                .product(name: "SwiftUILogger", package: "SwiftUILogger", condition: .when(platforms: [.iOS]))
+                .product(name: "SwiftUILogger", package: "SwiftUILogger", condition: .when(platforms: [.iOS])),
+                .product(name: "DeviceKit", package: "DeviceKit", condition: .when(platforms: [.iOS]))
             ],
-            path: "Souces_iOS",
+            path: "TBSwiftiOS",
+            resources: []
+        ),
+
+        .target(
+            name: "TBSwiftmacOS",
+            dependencies: [
+                // ...
+            ],
+            path: "TBSwiftmacOS",
             resources: []
         )
 
