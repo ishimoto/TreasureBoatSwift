@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+
+#if (iOS || watchOS || tvOS)
 import UIKit
 
 extension UIImage {
-        
+    
     // MARK: - TB Images
-
+    
     public static let tbShip: UIImage = UIImage.fromAsset(assetName: TBConstant.Image.tbShip)
     public static let tbLogo: UIImage = UIImage.fromAsset(assetName: TBConstant.Image.tbLogo)
-
+    
     // MARK: - UIImage Helper
-
+    
     /// 指定したファイルパスに画像を簡単に保存してやるメソッドを用意してやります。
     ///
     /// - parameter asPngTo: the file saved location as PNGデータ
@@ -26,7 +28,7 @@ extension UIImage {
         }
         try? data.write(to: URL(fileURLWithPath: path), options: [.atomic])
     }
-
+    
     /// 指定したファイルパスに画像を簡単に保存してやるメソッドを用意してやります。
     ///
     /// - parameter asJpegTo: the file saved location as JPGデータ
@@ -37,32 +39,20 @@ extension UIImage {
         }
         try? data.write(to: URL(fileURLWithPath: path), options: [.atomic])
     }
-
+    
     // MARK: - Asset support in SPM
-
+    
     /// Get the  UIImage form the Images Folder (TreasureBoatSwift Bundle).
     /// - parameter assetName: the name of the image from this Bundle
     /// - Returns: The Image.
     static func fromResource(packageResource name: String, ofType type: String) -> UIImage {
-#if canImport(UIKit)
         guard let path = Bundle.module.path(forResource: name, ofType: type),
               let image = UIImage(contentsOfFile: path) else {
             return UIImage()
         }
         return image
-#elseif canImport(AppKit)
-        #warning("rewrite")
-        guard let path = Bundle.module.path(forResource: name, ofType: type),
-              let image = NSImage(contentsOfFile: path) else {
-            self.init(name)
-            return
-        }
-        self.init(nsImage: image)
-#endif
     }
     
-#if canImport(UIKit)
-
     /// Get the  UIImage form the Media Asset Catalog (TreasureBoatSwift Bundle).
     /// - parameter assetName: the name of the asset from this Bundle
     /// - Returns: The UIImage.
@@ -73,6 +63,5 @@ extension UIImage {
         return uiImage
     }
     
-#endif
-    
 }
+#endif
