@@ -15,8 +15,8 @@ let package = Package(
         .watchOS(.v9)
     ],
     
+    // Products define the executables and libraries a package produces, and make them visible to other packages.
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "TreasureBoatSwift",
             targets: [
@@ -73,9 +73,9 @@ let package = Package(
 
     ],
     
+    // Targets are the basic building blocks of a package. A target can define a module or a test suite.
+    // Targets can depend on other targets in this package, and on products in packages this package depends on.
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             // The name of the target.
             name: "TreasureBoatSwift",
@@ -102,16 +102,6 @@ let package = Package(
         ),
         
         .target(
-            name: "TBLogTarget",
-            dependencies: [
-                .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
-                .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
-            ],
-            path: "TBLogTarget",
-            resources: []
-        ),
-        
-        .target(
             name: "TBSwiftiOS",
             dependencies: [
                 .product(name: "SwiftUILogger", package: "SwiftUILogger", condition: .when(platforms: [.iOS])),
@@ -129,6 +119,5 @@ let package = Package(
             path: "TBSwiftmacOS",
             resources: []
         )
-
     ]
 )
