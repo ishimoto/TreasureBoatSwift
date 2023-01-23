@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if (macOS)
+#if os(macOS)
 import AppKit
 
 extension NSImage {

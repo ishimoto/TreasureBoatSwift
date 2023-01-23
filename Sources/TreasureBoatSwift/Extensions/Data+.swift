@@ -5,7 +5,7 @@
 //  Created by Ken Ishimoto on 2022/10/12.
 //
 
-#if (iOS || watchOS || tvOS)
+#if os(iOS) || os(watchOS) || os(tvOS)
 
 import UIKit
 
@@ -24,7 +24,7 @@ public extension Data {
     
 }
 
-#elseif (macOS)
+#elseif os(macOS)
 
 import AppKit
 
