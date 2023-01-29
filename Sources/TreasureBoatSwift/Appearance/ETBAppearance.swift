@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ETBAppearance: String {
+public enum ETBAppearance: String, CaseIterable {
     case dark
     case light
     case system
