@@ -63,6 +63,9 @@ let package = Package(
         /* SwiftUILogger */
         .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
 
+        /* MagicUI */
+        .package(url: "https://github.com/rebeloper/MagicUI.git", from: Version(0, 9, 9)),
+
         /*
             CocoaLumberjack
                 * swift-log
@@ -84,6 +87,7 @@ let package = Package(
                 .product(name: "SFSafeSymbols", package: "SFSafeSymbols"),
                 .product(name: "BetterCodable", package: "BetterCodable"),
                 .product(name: "SwiftDate", package: "SwiftDate"),
+                .product(name: "MagicUI", package: "MagicUI"),
                 //                .product(name: "Swift-JWT", package: "SwiftJWT"),
                 .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
                 .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
