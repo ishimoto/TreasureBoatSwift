@@ -7,8 +7,17 @@
 
 import Foundation
 
-extension String {
+extension String? {
+    
+    public var isNilOrEmpty: Bool {
+        return self == nil || self != ""
+    }
 
+
+}
+
+extension String {
+    
     /// Convert the url string presentation into a real URL
     /// - Returns: an URL.
     public func url() -> URL {
