@@ -8,7 +8,7 @@
 import Foundation
 import MagicUI
 
-public enum ETBHTTPSchema: String, CaseIterable {
+public enum ETBHTTPSchema: String, CaseIterable, Codable {
     
     case http
     case https
