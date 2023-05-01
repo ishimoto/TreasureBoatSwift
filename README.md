@@ -16,6 +16,10 @@ Following Information can be very helpful
 
 * https://useyourloaf.com/blog/creating-swift-packages-in-xcode/
 
+JSON 4 Swift
+
+* https://www.json4swift.com
+
 ### Dependencies
 
 * [SFSafeSymbols](https://github.com/SFSafeSymbols/SFSafeSymbols)

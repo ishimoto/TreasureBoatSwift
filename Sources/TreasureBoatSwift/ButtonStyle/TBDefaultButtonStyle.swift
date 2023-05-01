@@ -29,3 +29,7 @@ public struct TBDefaultButtonStyle: ButtonStyle {
         
     }
 }
+
+extension ButtonStyle where Self == TBDefaultButtonStyle {
+    public static var treasureBoat: Self { .init() }
+}

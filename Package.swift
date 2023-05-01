@@ -70,7 +70,8 @@ let package = Package(
             CocoaLumberjack
                 * swift-log
 
-            Note that you may need to add both products, CocoaLumberjack and CocoaLumberjackSwift to your target since SPM sometimes fails to detect that CocoaLumerjackSwift depends on CocoaLumberjack.
+            Note that you may need to add both products, CocoaLumberjack and CocoaLumberjackSwift to your target since SPM sometimes fails to detect that
+                CocoaLumerjackSwift depends on CocoaLumberjack.
          */
         .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: Version(3, 8, 0))
 

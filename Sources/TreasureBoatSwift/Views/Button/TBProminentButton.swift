@@ -10,7 +10,7 @@ import SFSafeSymbols
 
 public struct TBProminentButton: View {
     
-    // MARK: - PROPERTIES
+    // MARK: - PROPERTIES 
     
     var title: String
     var systemSymbol: SFSymbol
