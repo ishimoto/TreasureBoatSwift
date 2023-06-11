@@ -36,6 +36,9 @@ let package = Package(
     dependencies: [
         /* SFSafe Symbols */
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(4, 0, 0)),
+
+        /* Async-plus */
+        .package(url: "https://github.com/async-plus/async-plus", from: Version(1, 0, 0)),
         
         /* BetterCodable */
         .package(url: "https://github.com/marksands/BetterCodable", from: Version(0, 4, 0)),
@@ -64,7 +67,7 @@ let package = Package(
         .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
 
         /* MagicUI */
-        .package(url: "https://github.com/rebeloper/MagicUI.git", from: Version(0, 9, 9)),
+        .package(url: "https://github.com/ishimoto/MagicUI.git", from: Version(0, 0, 1)),
 
         /*
             CocoaLumberjack
