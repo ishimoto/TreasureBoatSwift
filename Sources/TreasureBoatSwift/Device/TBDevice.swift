@@ -32,7 +32,7 @@ public class TBDevice {
 #endif
     }
 
-#if os(iOS) || os(tvOS)
+#if os(iOS)
 
     static public func isRetina() -> Bool {
         return UIScreen.main.scale > 1.0
