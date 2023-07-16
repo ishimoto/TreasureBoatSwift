@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
+#if os(iOS)
 
 extension UIWindow {
 
@@ -20,9 +20,15 @@ extension UIWindow {
     }
 
     public static var isLandscape: Bool {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        return windowScene?.interfaceOrientation.isLandscape ?? false
+        if #available(iOS 13.0, *) {
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            return windowScene?.interfaceOrientation.isLandscape ?? false
+        } else {
+            return UIApplication.shared.statusBarOrientation.isLandscape
+        }
     }
     
 }
+
+#endif
