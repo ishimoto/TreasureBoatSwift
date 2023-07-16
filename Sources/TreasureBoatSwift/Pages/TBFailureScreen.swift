@@ -39,8 +39,10 @@ public struct TBFailureScreen: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        
+
+#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+#endif
         .navigationTitle("Error")
     }
 }
