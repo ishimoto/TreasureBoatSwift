@@ -40,7 +40,9 @@ public struct TBLoadingScreen: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         
+#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+#endif
         .navigationTitle("Loading")
     }
 }

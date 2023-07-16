@@ -39,7 +39,9 @@ public struct TBNoneScreen: View {
         
         .edgesIgnoringSafeArea(.bottom)
         
+#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+#endif
         .navigationTitle("No Data")
     }
 }
