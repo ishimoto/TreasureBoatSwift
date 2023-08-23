@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
     
     @ViewBuilder
     /// Presents a view when a binding to a Boolean value that you

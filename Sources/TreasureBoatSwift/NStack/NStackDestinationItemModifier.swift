@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NStackDestinationItemModifier<Destination: View, Item: Identifiable & Equatable>: ViewModifier {
+public struct NStackDestinationItemModifier<Destination: View, Item: Identifiable & Equatable>: ViewModifier {
     
     @Binding var item: Item?
     var onDismiss: (() -> Void)?

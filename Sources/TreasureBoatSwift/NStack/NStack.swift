@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NStack<Root: View>: View {
+public struct NStack<Root: View>: View {
     
     @ViewBuilder var root: () -> Root
     

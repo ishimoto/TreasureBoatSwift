@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NavigationType {
+public enum NavigationType {
     case link
     case sheet
     #if !os(macOS)

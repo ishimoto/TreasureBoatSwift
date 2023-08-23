@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NStackDestinationPresentedModifier<Destination: View>: ViewModifier {
+public struct NStackDestinationPresentedModifier<Destination: View>: ViewModifier {
     
     @Binding var isPresented: Bool
     var onDismiss: (() -> Void)?
