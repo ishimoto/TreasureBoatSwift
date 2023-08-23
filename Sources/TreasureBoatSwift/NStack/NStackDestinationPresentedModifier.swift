@@ -13,7 +13,7 @@ public struct NStackDestinationPresentedModifier<Destination: View>: ViewModifie
     var onDismiss: (() -> Void)?
     @ViewBuilder var destination: () -> Destination
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         Group {
             groupContent(content)
         }

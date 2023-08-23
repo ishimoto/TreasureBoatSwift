@@ -16,7 +16,7 @@ public struct NStackDestinationItemModifier<Destination: View, Item: Identifiabl
     
     @State private var isPresented: Bool = false
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         Group {
             groupContent(content)
         }
