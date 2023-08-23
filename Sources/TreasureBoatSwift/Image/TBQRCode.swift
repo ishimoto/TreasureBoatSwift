@@ -5,7 +5,7 @@
 //  Created by Ken Ishimoto on 2022/10/23.
 //
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 
 import SwiftUI
 import CoreImage
