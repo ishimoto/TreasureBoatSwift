@@ -66,8 +66,11 @@ let package = Package(
         /* SwiftUILogger */
         .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
 
-        /* MagicUI */
+        /* MagicUI (Deprecated) */
         .package(url: "https://github.com/ishimoto/MagicUI.git", from: Version(0, 0, 1)),
+
+        /* OneDot */
+        .package(url: "https://github.com/rebeloper/OneDot.git", from: Version(0, 0, 1)),
 
         /*
             CocoaLumberjack
