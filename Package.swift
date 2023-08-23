@@ -95,6 +95,7 @@ let package = Package(
                 .product(name: "BetterCodable", package: "BetterCodable"),
                 .product(name: "SwiftDate", package: "SwiftDate"),
                 .product(name: "MagicUI", package: "MagicUI"),
+                .product(name: "OneDot", package: "OneDot"),
                 //                .product(name: "Swift-JWT", package: "SwiftJWT"),
                 .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
                 .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
