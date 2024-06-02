@@ -104,32 +104,30 @@ public struct TBNavigationRow: View {
 }
 
 #if os(iOS)
-struct TBNavigationRow_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            
-            TBNavigationRow(systemSymbol: .info,
-                            backgroundColor: .benzaiten,
-                            foregroundColor: .white,
-                            title: "About TreasureBoat",
-                            label: "Info",
-                            description: "Information about TreasureBoat",
-                            circleColor: .red,
-                            showLock: true)
-            .padding()
-            
-            TBNavigationRow(systemSymbol: .info,
-                            backgroundColor: .benzaiten,
-                            foregroundColor: .white,
-                            title: "About TreasureBoat",
-                            label: "Info",
-                            description: "Information about TreasureBoat",
-                            circleColor: .red,
-                            showLock: false)
-            .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.dark)
-            .padding()
-        }
+#Preview("Explaination Sheet") {
+    Group {
+        
+        TBNavigationRow(systemSymbol: .info,
+                        backgroundColor: .benzaiten,
+                        foregroundColor: .white,
+                        title: "About TreasureBoat",
+                        label: "Info",
+                        description: "Information about TreasureBoat",
+                        circleColor: .red,
+                        showLock: true)
+        .padding()
+        
+        TBNavigationRow(systemSymbol: .info,
+                        backgroundColor: .benzaiten,
+                        foregroundColor: .white,
+                        title: "About TreasureBoat",
+                        label: "Info",
+                        description: "Information about TreasureBoat",
+                        circleColor: .red,
+                        showLock: false)
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.dark)
+        .padding()
     }
 }
 #endif

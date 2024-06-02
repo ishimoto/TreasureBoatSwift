@@ -1,6 +1,6 @@
 //
 //  TBObservableObject.swift
-//  
+//  use `TBObservable` for iOS17+
 //
 //  Created by Ken Ishimoto on 2022/10/18.
 //

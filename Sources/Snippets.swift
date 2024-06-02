@@ -22,6 +22,7 @@ struct Snippets {
      let onDataChanged: CompletionHandler
      */
 
-    
+    // #Preview("MenuPage" /* MacOS 14+ , traits: .portrait */) {
+
     
 }

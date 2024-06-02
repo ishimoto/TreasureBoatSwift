@@ -37,17 +37,18 @@ let package = Package(
         /* SFSafe Symbols */
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: Version(4, 0, 0)),
 
-        /* Async-plus */
-        .package(url: "https://github.com/async-plus/async-plus", from: Version(1, 0, 0)),
-        
         /* BetterCodable */
         .package(url: "https://github.com/marksands/BetterCodable", from: Version(0, 4, 0)),
-
+        
         /* swift-collections */
         .package(url: "https://github.com/apple/swift-collections.git", from: Version(1, 0, 0)),
-
+        
         /* SwiftDate */
         .package(url: "https://github.com/malcommac/SwiftDate", from: Version(7, 0, 0)),
+        
+        
+        
+        
         
         /*
             SwiftJWT
@@ -61,16 +62,13 @@ let package = Package(
         .package(url: "https://github.com/IBM-Swift/Swift-JWT.git", from: Version(4, 0, 0)),
         
         /* DeviceKit */
-        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(5, 0, 0)),
+        .package(url: "https://github.com/devicekit/DeviceKit", from: Version(5, 2, 2)),
         
         /* SwiftUILogger */
         .package(url: "https://github.com/0xLeif/SwiftUILogger", from: Version(0, 1, 0)),
 
         /* MagicUI (Deprecated) */
         .package(url: "https://github.com/ishimoto/MagicUI.git", from: Version(0, 0, 1)),
-
-        /* OneDot */
-        .package(url: "https://github.com/rebeloper/OneDot.git", from: Version(0, 0, 1)),
 
         /*
             CocoaLumberjack
@@ -95,9 +93,9 @@ let package = Package(
                 .product(name: "BetterCodable", package: "BetterCodable"),
                 .product(name: "SwiftDate", package: "SwiftDate"),
                 .product(name: "MagicUI", package: "MagicUI"),
-                .product(name: "OneDot", package: "OneDot"),
                 //                .product(name: "Swift-JWT", package: "SwiftJWT"),
                 .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
+                .product(name: "DeviceKit", package: "DeviceKit"),
                 .product(name: "CocoaLumberjackSwift", package: "CocoaLumberjack")
             ],
             // The path of the target, relative to the package root.

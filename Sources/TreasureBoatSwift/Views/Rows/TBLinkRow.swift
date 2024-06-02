@@ -51,8 +51,8 @@ public struct TBLinkRow: View {
                 }
                 UIApplication.shared.open(url as URL)
             } label: {
-                Image(systemSymbol: .chevronRight)
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                Image(systemSymbol: .link)
+                    .foregroundStyle(.secondary)
             }
             .accentColor(Color(.systemGray))
             
