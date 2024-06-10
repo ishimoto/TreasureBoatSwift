@@ -1,16 +1,33 @@
 //
-//  Data.swift
-//  
+//  Data+.swift
+//  RequesterDemo
 //
-//  Created by Ken Ishimoto on 2022/10/12.
+//  Created by Alex Nagy on 27.07.2022.
 //
+
+import Foundation
 
 #if os(iOS) || os(watchOS) || os(tvOS)
-
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 public extension Data {
     
+    func jsonString(pretty: Bool = false) -> String {
+        if let json = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) {
+            if pretty, let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+                return String(decoding: jsonData, as: UTF8.self)
+            } else {
+                return String(decoding: self, as: UTF8.self)
+            }
+        } else {
+            return "JSON data is malformed"
+        }
+    }
+    
+#if os(iOS) || os(watchOS) || os(tvOS)
     /// データ→イメージに変換する
     ///
     /// - Returns: 変換後のイメージ
@@ -21,15 +38,7 @@ public extension Data {
         }
         return image
     }
-    
-}
-
 #elseif os(macOS)
-
-import AppKit
-
-public extension Data {
-    
     /// データ→イメージに変換する
     ///
     /// - Returns: 変換後のイメージ
@@ -40,6 +49,5 @@ public extension Data {
         }
         return image
     }
-    
-}
 #endif
+}

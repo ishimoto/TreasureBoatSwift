@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MagicUI
 
 public class TBServerToMobileData {
     
@@ -50,8 +49,8 @@ public class TBServerToMobileData {
     // Server Information
     //********************************************************************
     
-    private var _schema: ETBHTTPSchema = .https
-    public var schema: ETBHTTPSchema {
+    private var _schema: ETBURLScheme = .https
+    public var schema: ETBURLScheme {
         get {
             return self._schema
         }
@@ -417,7 +416,7 @@ public class TBServerToMobileData {
         return httpBody
     }
     
-    public func request() -> Request? {
+    public func request() -> TBRequest? {
             
         if host.isEmpty && fullUrl.isEmpty {
             errorMessage = "the HOST is empty."
@@ -447,28 +446,28 @@ public class TBServerToMobileData {
         }
         
         if !fullUrl.isEmpty {
-            return Request(url: fullUrl,
-                           method: .post,
+            return TBRequest(url: fullUrl,
+                           method: ETBHTTPMethod.post,
                            headers: httpHeader(),
-                           body: HTTPBody(data: bodyData))
+                           body: TBHTTPBody(data: bodyData))
         }
         
         if port.isEmpty {
-            return Request(scheme: schema.magicUiScheme,
+            return TBRequest(scheme: schema,
                            host: host,
                            path: path,
-                           method: method.magicUiHTTPMethod,
+                           method: method,
                            headers: httpHeader(),
-                           body: HTTPBody(data: bodyData))
+                           body: TBHTTPBody(data: bodyData))
         }
         
-        return Request(scheme: schema.magicUiScheme,
+        return TBRequest(scheme: schema,
                        host: host,
                        path: path,
                        port: Int(port) ?? 80,
-                       method: method.magicUiHTTPMethod,
+                       method: method,
                        headers: httpHeader(),
-                       body: HTTPBody(data: bodyData))
+                       body: TBHTTPBody(data: bodyData))
     }
         
     public var debugDescription: String {
