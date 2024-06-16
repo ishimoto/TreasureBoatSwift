@@ -197,6 +197,15 @@ public struct TBConstant {
     }
 
     //********************************************************************
+    // MARK: - Encrypt Decrypt (aes128)
+    //********************************************************************
+    
+    public struct Encryption {
+        public static let encryptionKey: String = "keykeykeykeykeyk"
+        public static let encryptionIV: String = "drowssapdrowssap"
+    }
+
+    //********************************************************************
     // MARK: - Log
     //********************************************************************
     

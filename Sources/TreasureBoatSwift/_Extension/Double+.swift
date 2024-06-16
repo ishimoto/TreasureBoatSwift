@@ -1,6 +1,5 @@
 //
 //  Double+.swift
-//  MagicUI
 //
 //  Created by Alex Nagy on 12.07.2022.
 //

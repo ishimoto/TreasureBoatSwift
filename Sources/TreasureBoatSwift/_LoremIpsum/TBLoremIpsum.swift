@@ -1,6 +1,5 @@
 //
 //  TBLoremIpsum.swift
-//  Thanks to MagicUI
 //
 //  Created by Alex Nagy on 17.06.2022.
 //

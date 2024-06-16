@@ -46,10 +46,12 @@ let package = Package(
         /* SwiftDate */
         .package(url: "https://github.com/malcommac/SwiftDate", from: Version(7, 0, 0)),
         
+        /* KeychainAccess */
+        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess", from: Version(4, 2, 2)),
         
-        
-        
-        
+        /* CryptoSwift */
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: Version(1, 3, 0)),
+
         /*
             SwiftJWT
                 * Cryptor
@@ -89,6 +91,9 @@ let package = Package(
                 .product(name: "SFSafeSymbols", package: "SFSafeSymbols"),
                 .product(name: "BetterCodable", package: "BetterCodable"),
                 .product(name: "SwiftDate", package: "SwiftDate"),
+                .product(name: "KeychainAccess", package: "KeychainAccess"),
+                .product(name: "CryptoSwift", package: "CryptoSwift"),
+
                 //                .product(name: "Swift-JWT", package: "SwiftJWT"),
                 .product(name: "CocoaLumberjack", package: "CocoaLumberjack"),
                 .product(name: "DeviceKit", package: "DeviceKit"),
