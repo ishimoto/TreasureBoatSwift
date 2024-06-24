@@ -10,23 +10,19 @@ import SwiftUI
 public struct TBIntroScreen: View {
     
     /// Visibility Status
-    @AppStorage(TBConstant.AppStorage.IntroVersionNumber) var introVersionNumber: String = "0"
-
+    @AppStorage(TBConstant.AppStorage.IntroVersionNumber) var introVersionNumber: Int = 0
+    
     @Environment(\.dismiss) private var dismiss
     
-    var title: String = "What's New in \nTreasureBoat"
-    var color: Color = .red
-    var pointViews: [TBIntroModel] = []
-
-    public init(title: String, color: Color, pointViews: [TBIntroModel]) {
-        self.title = title
-        self.color = color
-        self.pointViews = pointViews
+    var introData: ITBIntroProtocol
+    
+    public init(introData: ITBIntroProtocol) {
+        self.introData = introData
     }
     
     public var body: some View {
         VStack(spacing: 15) {
-            Text(title)
+            Text(introData.title)
                 .font(.largeTitle.bold())
                 .multilineTextAlignment(.center)
                 .padding(.top, 65)
@@ -34,11 +30,9 @@ public struct TBIntroScreen: View {
             
             /// Points View
             VStack(alignment: .leading, spacing: 25, content: {
-                
-                ForEach(pointViews, id: \.self) { pointView in
+                ForEach(introData.pointViews, id: \.self) { pointView in
                     PointView(pointView: pointView)
                 }
-                
             })
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 15)
@@ -46,9 +40,7 @@ public struct TBIntroScreen: View {
             Spacer(minLength: 10)
             
             Button(action: {
-                var number = Int(introVersionNumber) ?? 0
-                number += 1
-                introVersionNumber = String(number)
+                introVersionNumber = introData.version
                 
                 dismiss()
                 
@@ -58,7 +50,7 @@ public struct TBIntroScreen: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(color, in: .rect(cornerRadius: 12))
+                    .background(introData.color, in: .rect(cornerRadius: 12))
                     .contentShape(.rect)
             })
         }
@@ -71,7 +63,7 @@ public struct TBIntroScreen: View {
         HStack(spacing: 20) {
             Image(systemSymbol: pointView.systemSymbol)
                 .font(.largeTitle)
-                .foregroundStyle(color)
+                .foregroundStyle(introData.color)
                 .frame(width: 45)
             
             VStack(alignment: .leading, spacing: 6, content: {
@@ -85,5 +77,5 @@ public struct TBIntroScreen: View {
             })
         }
     }
-
+    
 }
