@@ -94,9 +94,6 @@ public extension View {
             .contentShape(RoundedRectangle(cornerRadius: cornerRadius, style: style))
     }
     
-    
-    
-    
 #if os(iOS) || os(watchOS)
     /// Links a ``PhotosPicker`` selection to a ``UIImage`` binding
     /// - Parameters:
@@ -104,7 +101,7 @@ public extension View {
     ///   - selectedUIImage: ``UIImage`` binding
     @MainActor
     func linkPhotosPicker(selection: Binding<PhotosPickerItem?>, toSelectedUIImage selectedUIImage: Binding<UIImage?>) -> some View {
-        self.onChange(of: selection.wrappedValue) { newValue in
+        self.onChange(of: selection.wrappedValue) { oldValue, newValue in
             Task {
                 if let imageData = try? await newValue?.loadTransferable(type: Data.self), let image = UIImage(data: imageData) {
                     selectedUIImage.wrappedValue = image
@@ -113,7 +110,53 @@ public extension View {
         }
     }
 #endif
-    
+ 
+#if os(iOS) || os(macOS)
+
+    /// https://www.youtube.com/watch?v=UETjgKWWB1I
+    @ViewBuilder
+    func shine(_ toggle: Bool, duration: CGFloat = 0.5, clipShape: some Shape = .rect, rightToLeft: Bool = false) -> some View {
+        self
+            .overlay {
+                GeometryReader {
+                    let size = $0.size
+                    /// Eliminating Negative Duration
+                    let moddedDuration = max(0.3, duration)
+                    
+                    Rectangle()
+                        .fill(.linearGradient(
+                            colors: [
+                                .clear,
+                                .clear,
+                                .white.opacity(0.1),
+                                .white.opacity(0.5),
+                                .white.opacity(1),
+                                .white.opacity(0.5),
+                                .white.opacity(0.1),
+                                .clear,
+                                .clear,
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ))
+                        .scaleEffect(y: 8)
+                        .keyframeAnimator(initialValue: 0.0, trigger: toggle, content: { content, progress in
+                            content
+                                .offset(x: -size.width + (progress * (size.width * 2)))
+                        }, keyframes: { _ in
+                            CubicKeyframe(.zero, duration: 0.1)
+                            CubicKeyframe(1, duration: moddedDuration)
+                        })
+                        .rotationEffect(.init(degrees: 45))
+                    /// Simply Flipping View in Horizontal Direction
+                        .scaleEffect(x: rightToLeft ? -1 : 1)
+                }
+            }
+            .clipShape(clipShape)
+            .contentShape(clipShape)
+    }
+#endif
+
     /// DEPRECATED : use embedNavigationStack
     func embedNavigationView() -> some View {
         return NavigationStack { self }
